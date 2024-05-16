@@ -1,7 +1,6 @@
-from src.Domain.Entity.Category import Category
 import psycopg2
 
-class UpdateCategory:
+class DeleteCategory:
     def __init__(self):
         self.conn = psycopg2.connect(
             database="Filmes",
@@ -12,7 +11,7 @@ class UpdateCategory:
             client_encoding='utf-8'
         )
     
-    def execute(self, id, name, description):
+    def execute(self, id):
         cursor = self.conn.cursor()
         try:
             cursor.execute("SELECT * FROM CATEGORY WHERE id = %s", (id,))
@@ -21,15 +20,16 @@ class UpdateCategory:
             if not category_data:
                 raise ValueError("No category data found")
 
-            category = Category(category_data[1], category_data[2], category_data[3])
-            category.Update(name, description) 
-
-            cursor.execute("UPDATE CATEGORY SET name = %s, description = %s WHERE id = %s", (category.name, category.description, id))          
+            cursor.execute("DELETE FROM CATEGORY WHERE id = %s", (id,))          
             self.conn.commit()
+            return True
         except (Exception, psycopg2.DatabaseError) as error:
             print(f"Error: {error}")
+            self.conn.rollback()
+            raise
         finally:
             cursor.close()
     
     def __del__(self):
         self.conn.close()
+    
