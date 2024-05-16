@@ -1,0 +1,32 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: var(--preto);
+    color: var(--vermelho); 
+}
+
+.header__title{
+    font-size: 24px;
+    font-weight: 900;
+    font-family: var(--fonte);
+    margin-left: 1em;
+    padding: 0.5em 0 0.5em 0;
+    text-transform: uppercase;
+}
+
+.header__list{
+    display: flex;
+    gap: 1em;
+    margin-right: 1em;
+    
+}
+
+.header__link{
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: var(--branco);
+    font-family: var(--fonte);
+}

@@ -1,0 +1,12 @@
+{
+    "encoding": "utf-8",
+    "database": {
+      "host": "db",
+      "port": 5432,
+      "user": "postgres",
+      "password": "root",
+      "dbname": "Movies",
+      "options": "-c client_encoding=UTF8"
+    }
+  }
+  
